@@ -1,0 +1,33 @@
+main{
+    color: white;
+    width: 80vw;
+    height: 100vh;
+    border: 2px solid rgb(154, 141, 141);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 80px;
+    padding: 0px;
+
+}
+body{
+    background-color: black;
+    justify-content: center;
+}
+
+.card{
+    width: 10%;
+    height: 10%;
+    box-shadow: 10px 10px 5px 0px rgba(66, 56, 56, 0.25);
+
+}
+.actual{
+    background-color: orange;
+}
+.objetivo{
+    background-color: green;
+
+}
