@@ -1,10 +1,8 @@
 main{
-    color: white;
+    
     width: 80vw;
     height: 100vh;
-    border: 2px solid rgb(154, 141, 141);
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,22 +10,50 @@ main{
     margin-left: 80px;
     padding: 0px;
 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+
 }
 body{
-    background-color: black;
+    background-color: rgb(89, 132, 226);
     justify-content: center;
 }
 
 .card{
     width: 10%;
     height: 10%;
-    box-shadow: 10px 10px 5px 0px rgba(66, 56, 56, 0.25);
+    border: solid 1px green;
+    background-color: rgb(130, 199, 130);
 
 }
-.actual{
-    background-color: orange;
+.actual1{
+    background-image: url("img/perro1.jpg");
+    background-size: cover; 
+    background-position: center;
 }
+.actual2{
+    background-image: url("img/perro2.avif");
+    background-size: cover; 
+    background-position: center;
+}
+
 .objetivo{
-    background-color: green;
+    background-image: url("img/hueso.jpg");
+    background-size: cover; 
+    background-position: center;
 
+}
+.boton{
+    
+    text-align: center;
+    font-size: x-large;
+    color: rgb(55, 5, 5);
+    border-radius: 20px;
+    padding: 15px;
+    width: 120px;
+    height: 100px;
+    background-color: rgb(236, 237, 245);
+    margin-left: 90%;
 }
