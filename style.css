@@ -3,18 +3,11 @@ main{
     width: 80vw;
     height: 100vh;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-left: 80px;
     padding: 0px;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
-
+    display: grid;
+    grid-template: repeat(10,1fr)/repeat(10,1fr); 
+    /* col y filas con el grid */
+    margin:auto;
 }
 body{
     background-color: rgb(89, 132, 226);
@@ -22,8 +15,9 @@ body{
 }
 
 .card{
-    width: 10%;
-    height: 10%;
+
+    /* width: 10%; */
+    /* height: 10%; */
     border: solid 1px green;
     background-color: rgb(130, 199, 130);
 

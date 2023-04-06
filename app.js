@@ -39,7 +39,8 @@ function pintaConsola(){
         }
     }
 }
-body.addEventListener('load', pintaConsola());
+//document.addEventListener('DOMContentLoaded',pintaConsola);
+pintaConsola();
 button.textContent= "Reiniciar";
 button.setAttribute('class','boton');
 button.addEventListener('click', reinicio);
@@ -48,45 +49,104 @@ Necesito cualquier evento de tecla para poder mover el color de la casilla
 
 */
 main.appendChild(button);
-document.addEventListener('keydown', mover());
+document.addEventListener('keydown', mover);
+
+
 
 function reinicio(){
     //No reinicio como tal
         main.textContent = " ";
-        body.addEventListener('load', pintaConsola());
+        pintaConsola();
         button.textContent="Reiniciar";
+        main.appendChild(button);
 } 
+
 
 //recibe el objeto Event
 function mover(event){
+    let jugador1 = document.getElementsByClassName('actual1')[0];
+    let jugador2 = document.getElementsByClassName('actual2')[0];
+  
+    let pos1 = [parseInt(jugador1.classList[1]), parseInt(jugador1.classList[2])];
+    let pos2 =[parseInt(jugador2.classList[1]), parseInt(jugador2.classList[2])];
+    console.log(pos1);
+    console.log(pos2);  //sé posición
+
     console.log(event['key']);
     switch(event['key']){
+        //jugador 2
         case 'ArrowUp':
             console.log("has pulsado hacia arriba");
+            let casillaArriba2  = document.getElementsByClassName((pos2[0]- 1)+ 'f')[pos2[1]]; 
+            jugador2.classList.remove('actual2');
+            casillaArriba2.classList.add('actual2');
             //0 no la toco 1 3f 2 2c 3 objetivo
         break;
         case 'ArrowDown':
             console.log("has pulsado hacia abajo");
+            let casillaAbajo2 = document.getElementsByClassName((pos2[0]+ 1)+ 'f')[pos2[1]]; 
+            jugador2.classList.remove('actual2');
+            casillaAbajo2.classList.add('actual2');
         break;
         case 'ArrowLeft':
             console.log("has pulsado hacia izda");
+            let casillaIzda2 = document.getElementsByClassName((pos2[1]- 1)+ 'c')[pos2[0]]; 
+            jugador2.classList.remove('actual2');
+            casillaIzda2.classList.add('actual2');
         break;
         case 'ArrowRight': 
-        console.log("has pulsado hacia derecha");
+            console.log("has pulsado hacia derecha");
+            let casillaDcha2= document.getElementsByClassName((pos2[1]+ 1)+ 'c')[pos2[0]]; 
+            jugador2.classList.remove('actual2');
+            casillaDcha2.classList.add('actual2');
+        break;
+        case 'w':
+            console.log("has pulsado hacia arriba");
+            let casillaArriba1  = document.getElementsByClassName((pos1[0]- 1)+ 'f')[pos1[1]]; 
+            jugador1.classList.remove('actual1');
+            casillaArriba1.classList.add('actual1');
+            //0 no la toco 1 3f 2 2c 3 objetivo
+        break;
+        case 's':
+            console.log("has pulsado hacia abajo");
+            let casillaAbajo1 = document.getElementsByClassName((pos1[0]+ 1)+ 'f')[pos1[1]]; 
+            jugador1.classList.remove('actual1');
+            casillaAbajo1.classList.add('actual1');
+        break;
+        case 'a':
+            console.log("has pulsado hacia izda");
+            let casillaIzda1 = document.getElementsByClassName((pos1[1]- 1)+ 'c')[pos1[0]]; 
+            jugador1.classList.remove('actual1');
+            casillaIzda1.classList.add('actual1');
+        break;
+        case 'd': 
+            console.log("has pulsado hacia derecha");
+            let casillaDcha1= document.getElementsByClassName((pos1[1]+ 1)+ 'c')[pos1[0]]; 
+            jugador1.classList.remove('actual1');
+            casillaDcha1.classList.add('actual1');
         break;
     }
     //si hay 2 clases en casilla he ganado
-}
+
+    //cada vez que me muevo compruebo si gano
+   ganar();
+} 
+//poner arriba
+let divGanar= document.createElement('div');
+main.appendChild(divGanar);
 function ganar(){
-    let divGanar= document.createElement('div');
-    // Eliminar evento de teclado cuando hay un ganador.
     
-    if(posicionObjetivo.classList('actual1')){
+    let jugador1 = document.getElementsByClassName('actual1')[0];
+    let jugador2 = document.getElementsByClassName('actual2')[0];
+   
+    // Eliminar evento de teclado cuando hay un ganador.
+    if(jugador1.classList.contains('objetivo')){
+        console.log("g1");
         divGanar.textContent= "HA GANADO EL PERRO 1";
-    }else if(posicionObjetivo.classList('actual2')){
+    }else if(jugador2.classList.contains('objetivo')){
+        console.log("g2");
         divGanar.textContent= "HA GANADO EL PERRO 2";
     }
-
 }
 
 /*idea resolucion
@@ -107,14 +167,14 @@ para mover casillas compruebo el valor de estas filas y col y opero
 /*
 /**
  * PENDIENTE:
- * 1. Mover casillas.
+ * 1. Mover casillas. hecho
  * 2. Que hago con los limites.
  * 3. (colision entre dos jugadores. QUE HAGO).
  * 4. Que hago cuando gano.
  * 5. OBLIGATORIO. Boton reinicio para ejecutar de nuevo la funcion inicio.
  * 6. Contadores para puntuacion??
  * 7. Eliminar evento de teclado cuando hay un ganador.
- * 8. CSS BIEN.
+ * 8. CSS BIEN. hecho
  * 9. OPCIONAL. Contador de tiempo antes de poder iniciar el juego(tablero pintado pero sin posibilidad de ejecutar eventos de teclado)
  */
  
