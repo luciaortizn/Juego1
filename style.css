@@ -1,17 +1,33 @@
 main{
-    
-    width: 80vw;
-    height: 100vh;
+    margin-top: 0px;
+    width: 520px;
+    height: 420px;
     border-radius: 10px;
     padding: 0px;
     display: grid;
     grid-template: repeat(10,1fr)/repeat(10,1fr); 
     /* col y filas con el grid */
     margin:auto;
+    box-shadow: 1px 4px 20px 5px rgba(0,0,0,0.75);
 }
+.titulo{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom:12px;
+    height: 90px;
+    padding-left: 40%;
+    color: white;
+    
+}
+
 body{
     background-color: rgb(89, 132, 226);
     justify-content: center;
+    font-family: 'Open Sans';
+
 }
 
 .card{
@@ -40,14 +56,32 @@ body{
 
 }
 .boton{
-    
     text-align: center;
-    font-size: x-large;
-    color: rgb(55, 5, 5);
-    border-radius: 20px;
-    padding: 15px;
-    width: 120px;
-    height: 100px;
-    background-color: rgb(236, 237, 245);
-    margin-left: 90%;
+    padding: 5px;
+    color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #5b8a3c;
+    box-shadow: 0px 10px 14px -7px #3e7327;
+	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	background-color:#77b55a;
+	border-radius:4px;
+	border:1px solid #4b8f29;
+}
+
+.conten1{
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#divGanar{
+    color: rgb(111, 14, 14);
+    font-weight: 700;
+    
 }

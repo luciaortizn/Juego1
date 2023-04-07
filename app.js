@@ -1,6 +1,11 @@
 let main  = document.getElementsByTagName('main')[0];
 let body  = document.getElementsByTagName('body')[0];
+let contenedor1 = document.createElement('div');
 let button = document.createElement('button');
+let divGanar= document.createElement('div');
+let contenedor2 =document.createElement('div');
+let contadorPuntos1 = document.createElement('div');
+let contadorPuntos2 = document.createElement('div');
 //EVENTO NUEVO: eventlistener('que?', sobre/donde)el body carga completamente
 function pintaConsola(){
         /*
@@ -11,7 +16,16 @@ function pintaConsola(){
     let posicionObjetivo = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
     let posicionInicio1 =  [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
     let posicionInicio2 = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
-
+    contadorPuntos1.textContent = "Labrador: 0";
+    contadorPuntos2.textContent = "Pug: 0";
+    button.textContent= "Reiniciar";
+    button.setAttribute('class','boton');
+    button.addEventListener('click', reinicio);
+    contenedor1.appendChild(button);
+    divGanar.setAttribute('id', 'divGanar');
+    contenedor1.setAttribute('class', 'conten1');
+   // divGanar.textContent = "No hay ganador";
+    
     console.log('has hecho un click');
     for(let i= 0; i<10 ; i++){
         for(let j =0 ; j<10; j++){
@@ -39,28 +53,18 @@ function pintaConsola(){
         }
     }
 }
+
+divGanar.setAttribute('id', 'divGanar');
+contenedor1.setAttribute('class', 'conten1');
 //document.addEventListener('DOMContentLoaded',pintaConsola);
 pintaConsola();
-button.textContent= "Reiniciar";
-button.setAttribute('class','boton');
-button.addEventListener('click', reinicio);
-/*
-Necesito cualquier evento de tecla para poder mover el color de la casilla
-
-*/
-main.appendChild(button);
 document.addEventListener('keydown', mover);
 
-
-
+body.appendChild(contenedor1);
 function reinicio(){
-    //No reinicio como tal
-        main.textContent = " ";
+        main.textContent = "";
         pintaConsola();
-        button.textContent="Reiniciar";
-        main.appendChild(button);
 } 
-
 
 //recibe el objeto Event
 function mover(event){
@@ -76,64 +80,95 @@ function mover(event){
     switch(event['key']){
         //jugador 2
         case 'ArrowUp':
-            console.log("has pulsado hacia arriba");
-            let casillaArriba2  = document.getElementsByClassName((pos2[0]- 1)+ 'f')[pos2[1]]; 
-            jugador2.classList.remove('actual2');
-            casillaArriba2.classList.add('actual2');
-            //0 no la toco 1 3f 2 2c 3 objetivo
+            //límites
+            if((pos2[0]-1 )!= -1){
+                //colisiones
+                if(!(pos1[0]==pos2[0]-1 && pos1[1]==pos2[1])){
+                    console.log("has pulsado hacia arriba");
+                    let casillaArriba2  = document.getElementsByClassName((pos2[0]- 1)+ 'f')[pos2[1]]; 
+                    jugador2.classList.remove('actual2');
+                    casillaArriba2.classList.add('actual2');
+            }  
+        }
+                
         break;
         case 'ArrowDown':
-            console.log("has pulsado hacia abajo");
-            let casillaAbajo2 = document.getElementsByClassName((pos2[0]+ 1)+ 'f')[pos2[1]]; 
-            jugador2.classList.remove('actual2');
-            casillaAbajo2.classList.add('actual2');
+            if((pos2[0]+1 )!= 10){
+                if(!(pos1[0]==pos2[0]+1 && pos1[1]==pos2[1])){
+                    console.log("has pulsado hacia abajo");
+                    let casillaAbajo2 = document.getElementsByClassName((pos2[0]+ 1)+ 'f')[pos2[1]]; 
+                    jugador2.classList.remove('actual2');
+                    casillaAbajo2.classList.add('actual2');
+                } 
+            }
         break;
         case 'ArrowLeft':
-            console.log("has pulsado hacia izda");
-            let casillaIzda2 = document.getElementsByClassName((pos2[1]- 1)+ 'c')[pos2[0]]; 
-            jugador2.classList.remove('actual2');
-            casillaIzda2.classList.add('actual2');
+            if((pos2[1]-1 )!= -1){
+                if(!(pos1[0]==pos2[0] && pos1[1]==pos2[1]-1)){
+                    console.log("has pulsado hacia izda");
+                    let casillaIzda2 = document.getElementsByClassName((pos2[1]- 1)+ 'c')[pos2[0]]; 
+                    jugador2.classList.remove('actual2');
+                    casillaIzda2.classList.add('actual2');
+                }
+            }  
         break;
         case 'ArrowRight': 
-            console.log("has pulsado hacia derecha");
-            let casillaDcha2= document.getElementsByClassName((pos2[1]+ 1)+ 'c')[pos2[0]]; 
-            jugador2.classList.remove('actual2');
-            casillaDcha2.classList.add('actual2');
+        if((pos2[1]+1 )!= 10){
+            if(!(pos1[0]==pos2[0] && pos1[1]==pos2[1]+1)){
+                console.log("has pulsado hacia derecha");
+                let casillaDcha2= document.getElementsByClassName((pos2[1]+ 1)+ 'c')[pos2[0]]; 
+                jugador2.classList.remove('actual2');
+                casillaDcha2.classList.add('actual2');
+            } 
+        }
+        //jugador 1
         break;
-        case 'w':
-            console.log("has pulsado hacia arriba");
-            let casillaArriba1  = document.getElementsByClassName((pos1[0]- 1)+ 'f')[pos1[1]]; 
-            jugador1.classList.remove('actual1');
-            casillaArriba1.classList.add('actual1');
-            //0 no la toco 1 3f 2 2c 3 objetivo
+        case 'w':  
+            if((pos1[0]-1 )!= -1){ //veo la posición restando una a la que ya hay
+                if(!(pos1[0]-1==pos2[0] && pos1[1]==pos2[1])){
+                    console.log("has pulsado hacia arriba");
+                    let casillaArriba1  = document.getElementsByClassName((pos1[0]- 1)+ 'f')[pos1[1]]; 
+                    jugador1.classList.remove('actual1');
+                    casillaArriba1.classList.add('actual1');
+                }  
+            }
         break;
         case 's':
-            console.log("has pulsado hacia abajo");
-            let casillaAbajo1 = document.getElementsByClassName((pos1[0]+ 1)+ 'f')[pos1[1]]; 
-            jugador1.classList.remove('actual1');
-            casillaAbajo1.classList.add('actual1');
+            if((pos1[0]+1 )!= 10){
+                if(!(pos1[0]+1==pos2[0] && pos1[1]==pos2[1])){
+                    console.log("has pulsado hacia abajo");
+                    let casillaAbajo1 = document.getElementsByClassName((pos1[0]+ 1)+ 'f')[pos1[1]]; 
+                    jugador1.classList.remove('actual1');
+                    casillaAbajo1.classList.add('actual1');
+                }                
+            }  
         break;
         case 'a':
-            console.log("has pulsado hacia izda");
-            let casillaIzda1 = document.getElementsByClassName((pos1[1]- 1)+ 'c')[pos1[0]]; 
-            jugador1.classList.remove('actual1');
-            casillaIzda1.classList.add('actual1');
+            if((pos1[1]-1 )!= -1){
+                if(!(pos1[0]==pos2[0] && pos1[1]-1==pos2[1])){
+                    console.log("has pulsado hacia izda");
+                    let casillaIzda1 = document.getElementsByClassName((pos1[1]- 1)+ 'c')[pos1[0]]; 
+                    jugador1.classList.remove('actual1');
+                    casillaIzda1.classList.add('actual1');
+                }   
+            }
         break;
-        case 'd': 
-            console.log("has pulsado hacia derecha");
-            let casillaDcha1= document.getElementsByClassName((pos1[1]+ 1)+ 'c')[pos1[0]]; 
-            jugador1.classList.remove('actual1');
-            casillaDcha1.classList.add('actual1');
+        case 'd':
+            if((pos1[1]+1 )!= 10){
+                if(!(pos1[0]==pos2[0] && pos1[1]+1==pos2[1])){ //colisiones
+                    console.log("has pulsado hacia derecha");
+                    let casillaDcha1= document.getElementsByClassName((pos1[1]+ 1)+ 'c')[pos1[0]]; 
+                    jugador1.classList.remove('actual1');
+                    casillaDcha1.classList.add('actual1');
+                }
+            }    
         break;
-    }
-    //si hay 2 clases en casilla he ganado
-
+    } 
+     //si hay 2 clases en casilla he ganado
     //cada vez que me muevo compruebo si gano
-   ganar();
-} 
-//poner arriba
-let divGanar= document.createElement('div');
-main.appendChild(divGanar);
+    ganar(); 
+
+}   
 function ganar(){
     
     let jugador1 = document.getElementsByClassName('actual1')[0];
@@ -141,13 +176,25 @@ function ganar(){
    
     // Eliminar evento de teclado cuando hay un ganador.
     if(jugador1.classList.contains('objetivo')){
-        console.log("g1");
-        divGanar.textContent= "HA GANADO EL PERRO 1";
+        divGanar.textContent= "HA GANADO EL LABRADOR";
+        divGanar.style.color = "yellow";
+        contadorPuntos1.textContent = "Puntos: "
+        reinicio();
+       
     }else if(jugador2.classList.contains('objetivo')){
-        console.log("g2");
-        divGanar.textContent= "HA GANADO EL PERRO 2";
+        divGanar.textContent= "HA GANADO EL PUG";
+        divGanar.style.color = "purple";
+        contadorPuntos2.textContent = "Puntos: ";
+         reinicio();//PONER EL TEXTO
     }
+//le meto un contador a cada uno
+   
+    contenedor1.appendChild(divGanar);
+    contenedor2.appendChild(contadorPuntos1);
+    contenedor2.appendChild(contadorPuntos2);
+   
 }
+contenedor1.appendChild(divGanar);
 
 /*idea resolucion
 <- columna --
@@ -168,13 +215,12 @@ para mover casillas compruebo el valor de estas filas y col y opero
 /**
  * PENDIENTE:
  * 1. Mover casillas. hecho
- * 2. Que hago con los limites.
- * 3. (colision entre dos jugadores. QUE HAGO).
- * 4. Que hago cuando gano.
- * 5. OBLIGATORIO. Boton reinicio para ejecutar de nuevo la funcion inicio.
+ * 2. Que hago con los limites. hecho
+ * 3. (colision entre dos jugadores. QUE HAGO). hecho
+ * 4. Que hago cuando gano. hecho
+ * 5. OBLIGATORIO. Boton reinicio para ejecutar de nuevo la funcion inicio. hecho
  * 6. Contadores para puntuacion??
- * 7. Eliminar evento de teclado cuando hay un ganador.
+ * 7. Eliminar evento de teclado cuando hay un ganador.hecho
  * 8. CSS BIEN. hecho
  * 9. OPCIONAL. Contador de tiempo antes de poder iniciar el juego(tablero pintado pero sin posibilidad de ejecutar eventos de teclado)
  */
- 
