@@ -6,18 +6,17 @@ let divGanar= document.createElement('div');
 let contenedor2 =document.createElement('div');
 let contadorPuntos1 = document.createElement('div');
 let contadorPuntos2 = document.createElement('div');
+let cont1 = 0;
+let cont2 = 0;
 //EVENTO NUEVO: eventlistener('que?', sobre/donde)el body carga completamente
 function pintaConsola(){
         /*
     objetivo: corresponde al punto q tengo q llegar  * creootro
     actual: corresponde al punto actual
-
     */
     let posicionObjetivo = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
     let posicionInicio1 =  [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
     let posicionInicio2 = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
-    contadorPuntos1.textContent = "Labrador: 0";
-    contadorPuntos2.textContent = "Pug: 0";
     button.textContent= "Reiniciar";
     button.setAttribute('class','boton');
     button.addEventListener('click', reinicio);
@@ -25,7 +24,9 @@ function pintaConsola(){
     divGanar.setAttribute('id', 'divGanar');
     contenedor1.setAttribute('class', 'conten1');
    // divGanar.textContent = "No hay ganador";
-    
+    contenedor1.appendChild(contadorPuntos1);
+    contenedor1.appendChild(contadorPuntos2);
+
     console.log('has hecho un click');
     for(let i= 0; i<10 ; i++){
         for(let j =0 ; j<10; j++){
@@ -53,13 +54,13 @@ function pintaConsola(){
         }
     }
 }
-
+contadorPuntos1.setAttribute('class', 'contador');
+contadorPuntos2.setAttribute('class', 'contador');
 divGanar.setAttribute('id', 'divGanar');
 contenedor1.setAttribute('class', 'conten1');
 //document.addEventListener('DOMContentLoaded',pintaConsola);
 pintaConsola();
 document.addEventListener('keydown', mover);
-
 body.appendChild(contenedor1);
 function reinicio(){
         main.textContent = "";
@@ -176,22 +177,22 @@ function ganar(){
    
     // Eliminar evento de teclado cuando hay un ganador.
     if(jugador1.classList.contains('objetivo')){
+        cont1++;
         divGanar.textContent= "HA GANADO EL LABRADOR";
         divGanar.style.color = "yellow";
-        contadorPuntos1.textContent = "Puntos: "
+        contadorPuntos1.textContent = "LABRADOR: "+cont1;
         reinicio();
        
     }else if(jugador2.classList.contains('objetivo')){
+        cont2++;
         divGanar.textContent= "HA GANADO EL PUG";
         divGanar.style.color = "purple";
-        contadorPuntos2.textContent = "Puntos: ";
+        contadorPuntos2.textContent = "PUG: "+cont2;
          reinicio();//PONER EL TEXTO
     }
 //le meto un contador a cada uno
    
     contenedor1.appendChild(divGanar);
-    contenedor2.appendChild(contadorPuntos1);
-    contenedor2.appendChild(contadorPuntos2);
    
 }
 contenedor1.appendChild(divGanar);
@@ -219,8 +220,8 @@ para mover casillas compruebo el valor de estas filas y col y opero
  * 3. (colision entre dos jugadores. QUE HAGO). hecho
  * 4. Que hago cuando gano. hecho
  * 5. OBLIGATORIO. Boton reinicio para ejecutar de nuevo la funcion inicio. hecho
- * 6. Contadores para puntuacion??
+ * 6. Contadores para puntuacion
  * 7. Eliminar evento de teclado cuando hay un ganador.hecho
  * 8. CSS BIEN. hecho
- * 9. OPCIONAL. Contador de tiempo antes de poder iniciar el juego(tablero pintado pero sin posibilidad de ejecutar eventos de teclado)
+ * 9. OPCIONAL. Contador de tiempo antes de poder iniciar el juego(tablero pintado pero sin posibilidad de ejecutar eventos de teclado)no
  */
