@@ -37,17 +37,17 @@ function pintaConsola(){
 
             main.appendChild(div);
             //para pintar casilla le damos color de fondo
-            if(i == 5 && j == posicionObjetivo[1]){
+            if(i == posicionObjetivo[0] && j == posicionObjetivo[1]){
               div.classList.add('objetivo');
               console.log(div.classList);
               console.log('Estamos en la fila: '+ parseInt(div.classList[1]));
               console.log('estamos en la col: '+ parseInt(div.classList[2]));
               //ver que es esto
             }
-            if(i == 8 && j == posicionInicio1[1]){
+            if(i == posicionInicio1[0] && j == posicionInicio1[1]){
                 div.classList.add('actual1');
             }
-            if(i == 8 && j == posicionInicio2[1]){
+            if(i == posicionInicio2[0] && j == posicionInicio2[1]){
                 div.classList.add('actual2');
             }
         }
