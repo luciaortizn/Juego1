@@ -8,12 +8,8 @@ let contadorPuntos1 = document.createElement('div');
 let contadorPuntos2 = document.createElement('div');
 let cont1 = 0;
 let cont2 = 0;
-//EVENTO NUEVO: eventlistener('que?', sobre/donde)el body carga completamente
 function pintaConsola(){
-        /*
-    objetivo: corresponde al punto q tengo q llegar  * creootro
-    actual: corresponde al punto actual
-    */
+    
     let posicionObjetivo = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
     let posicionInicio1 =  [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
     let posicionInicio2 = [Math.floor(Math.random()*10), Math.floor(Math.random()*10)];
@@ -23,11 +19,9 @@ function pintaConsola(){
     contenedor1.appendChild(button);
     divGanar.setAttribute('id', 'divGanar');
     contenedor1.setAttribute('class', 'conten1');
-   // divGanar.textContent = "No hay ganador";
+
     contenedor1.appendChild(contadorPuntos1);
     contenedor1.appendChild(contadorPuntos2);
-
-    console.log('has hecho un click');
     for(let i= 0; i<10 ; i++){
         for(let j =0 ; j<10; j++){
             let div = document.createElement('div');
@@ -196,32 +190,3 @@ function ganar(){
    
 }
 contenedor1.appendChild(divGanar);
-
-/*idea resolucion
-<- columna --
--> coulmna ++
-abajo fila++
-arr fila--
-
-div class= "0 1" (parseint)
-hacer un array que recoja loas clases
-classlist da un array con posiciones = como split pero con espacios que haya
-
-el algoritmo
-introducir la i j en la funcion q crea el tablero (i fila j col)
-para mover casillas compruebo el valor de estas filas y col y opero
-            
- */
-/*
-/**
- * PENDIENTE:
- * 1. Mover casillas. hecho
- * 2. Que hago con los limites. hecho
- * 3. (colision entre dos jugadores. QUE HAGO). hecho
- * 4. Que hago cuando gano. hecho
- * 5. OBLIGATORIO. Boton reinicio para ejecutar de nuevo la funcion inicio. hecho
- * 6. Contadores para puntuacion
- * 7. Eliminar evento de teclado cuando hay un ganador.hecho
- * 8. CSS BIEN. hecho
- * 9. OPCIONAL. Contador de tiempo antes de poder iniciar el juego(tablero pintado pero sin posibilidad de ejecutar eventos de teclado)no
- */
